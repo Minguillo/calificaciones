@@ -4,6 +4,8 @@
  */
 package mx.itson.calificaciones.entidades;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import java.util.List;
 
 /**
@@ -15,6 +17,17 @@ public class Boleta {
    
     private List<Materia> materias;
 
+    public Boleta descerializar(String json) {
+        Boleta boleta = new Boleta();
+
+        try {
+            boleta = new Gson().fromJson(json, Boleta.class);
+        } catch (JsonSyntaxException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+
+        return boleta;
+    }
     /**
      * @return the alumno
      */
